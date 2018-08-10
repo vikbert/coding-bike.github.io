@@ -18,14 +18,27 @@ class Book implements BookInterface
         $this->currentPage = $currentPage;
     }
 
-    public function turnPage()
-    {
-        $this->currentPage++;
-    }
-
     public function open()
     {
         $this->currentPage = 1;
+    }
+
+    public function turnPage()
+    {
+        if ($this->currentPage === $this->amountPages) {
+            throw new \Exception('Failed: already the last page!');
+        }
+
+        $this->currentPage++;
+    }
+
+    public function turnPageTo(int $pageNumber)
+    {
+        if ($pageNumber > $this->amountPages) {
+            throw new \Exception(sprintf('Failed: the book has only %d pages!', $pageNumber));
+        }
+
+        $this->currentPage = $pageNumber;
     }
 
     public function getPage(): int

@@ -9,9 +9,11 @@ namespace DesignPatterns\Structural\Adapter;
  */
 interface BookInterface
 {
+    public function open();
+
     public function turnPage();
 
-    public function open();
+    public function turnPageTo(int $pageNumber);
 
     public function getPage(): int;
 }
