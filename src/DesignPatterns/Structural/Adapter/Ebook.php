@@ -7,31 +7,34 @@ namespace DesignPatterns\Structural\Adapter;
 /**
  * @author Xun Zhou <xun.zhou@lidl.com>
  */
-class Book implements BookInterface
+class Ebook implements EbookInterface
 {
-    private $amountPages;
+    /** @var bool */
+    private $isLocked = true;
+
+    /** @var int */
     private $currentPage;
+
+    /** @var int */
+    private $amountPages;
 
     public function __construct(int $amountPages)
     {
         $this->amountPages = $amountPages;
     }
 
-    public function open()
+    public function unlock()
     {
+        $this->isLocked = true;
         $this->currentPage = 1;
     }
 
-    public function turnPage()
+    public function pressNext()
     {
-        if ($this->currentPage === $this->amountPages) {
-            throw new \Exception('Failed: already the last page!');
-        }
-
         ++$this->currentPage;
     }
 
-    public function getPage(): int
+    public function getViewNumber(): int
     {
         return $this->currentPage;
     }
