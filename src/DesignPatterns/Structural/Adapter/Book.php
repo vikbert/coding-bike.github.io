@@ -32,15 +32,6 @@ class Book implements BookInterface
         ++$this->currentPage;
     }
 
-    public function turnPageTo(int $pageNumber)
-    {
-        if ($pageNumber > $this->amountPages) {
-            throw new \Exception(sprintf('Failed: the book has only %d pages!', $pageNumber));
-        }
-
-        $this->currentPage = $pageNumber;
-    }
-
     public function getPage(): int
     {
         return $this->currentPage;

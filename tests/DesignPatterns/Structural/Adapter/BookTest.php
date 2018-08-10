@@ -13,15 +13,7 @@ class BookTest extends TestCase
 
     public function setUp()
     {
-        $this->book = new Book(245);
-    }
-
-    /**
-     * @expectedException \Exception
-     */
-    public function testPageNumberExceed()
-    {
-        $this->book->turnPageTo(300);
+        $this->book = new Book(5);
     }
 
     /**
@@ -29,8 +21,10 @@ class BookTest extends TestCase
      */
     public function testCanNotTurnPageAnyMore()
     {
-        $this->book->turnPageTo(245);
-        $this->book->turnPage();
+        $this->book->open();
+        for ($i = 0; $i < 6; ++$i) {
+            $this->book->turnPage();
+        }
     }
 
     public function testBook()
@@ -42,8 +36,5 @@ class BookTest extends TestCase
 
         $this->book->turnPage();
         $this->assertEquals(2, $this->book->getPage());
-
-        $this->book->turnPageTo(100);
-        $this->assertEquals(100, $this->book->getPage());
     }
 }

@@ -13,7 +13,5 @@ interface BookInterface
 
     public function turnPage();
 
-    public function turnPageTo(int $pageNumber);
-
     public function getPage(): int;
 }
