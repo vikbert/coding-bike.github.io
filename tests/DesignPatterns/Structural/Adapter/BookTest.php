@@ -46,5 +46,4 @@ class BookTest extends TestCase
         $this->book->turnPageTo(100);
         $this->assertEquals(100, $this->book->getPage());
     }
-
 }

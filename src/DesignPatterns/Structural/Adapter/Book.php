@@ -29,7 +29,7 @@ class Book implements BookInterface
             throw new \Exception('Failed: already the last page!');
         }
 
-        $this->currentPage++;
+        ++$this->currentPage;
     }
 
     public function turnPageTo(int $pageNumber)

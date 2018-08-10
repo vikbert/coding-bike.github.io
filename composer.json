@@ -16,6 +16,6 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit tests/",
-        "cs": "vendor/bin/phpunit tests/",
+        "fix": "vendor/bin/php-cs-fixer fix"
     }
 }
