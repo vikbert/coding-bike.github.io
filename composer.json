@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-4": {
+            "PhpScooter\\Design\\": "src/Design"
+        },
+        "classmap": [
+            "src/Design"
+        ]
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
+    }
+}
