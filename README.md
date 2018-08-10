@@ -1,3 +1,1 @@
-# docute
-
-just start writing...
+# PHP Design Pattern Dojo
