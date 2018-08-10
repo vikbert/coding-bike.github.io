@@ -23,42 +23,10 @@
 ## 结构模式
 
 ### Adapter
-现有的服务`BookService`只能兼容interface `Book` 的进行阅读。当出现`Ebook`类的时候，该服务`BookService`就无法对它进行阅读， 因为出现接口冲突。此时可以通过添加adapter `EbookAdapter`，让该class `EbookAdapter`实现此接口`BookInterface`来满足服务的要求。 在adapter内部，对不兼容的接口`EbookInterface`进行解析和转换，将`EbookAdapter`翻译并且实现微可兼容的借口，最后可以被`BookService`所使用。
+现有的服务`BookService`只能兼容interface `Book` 的进行阅读。当出现`Ebook`类的时候，该服务`BookService`就无法对它进行阅读， 因为出现接口冲突。
 
-```php
-<?php
+#### BookService.php
 
-declare(strict_types = 1);
-
-namespace DesignPatterns\Structural\Adapter;
-
-interface BookInterface
-{
-    public function open();
-
-    public function turnPage();
-
-    public function getPage(): int;
-}
-```
-
-```php
- <?php
-
-declare(strict_types = 1);
-
-namespace DesignPatterns\Structural\Adapter;
-
-interface EbookInterface
-{
-    public function unlock();
-
-    public function pressNext();
-
-    public function getViewNumber(): int;
-}
- 
-```
 ```php
  <?php
 
@@ -88,40 +56,24 @@ class BookService
 }
  
 ```
-
+#### BookInterface.php
 ```php
- <?php
+<?php
 
 declare(strict_types = 1);
 
 namespace DesignPatterns\Structural\Adapter;
 
-class EbookAdapter implements BookInterface
+interface BookInterface
 {
-    private $ebook;
+    public function open();
 
-    public function __construct(EbookInterface $ebook)
-    {
-        $this->ebook = $ebook;
-    }
+    public function turnPage();
 
-    public function open()
-    {
-        $this->ebook->unlock();
-    }
-
-    public function turnPage()
-    {
-        $this->ebook->pressNext();
-    }
-
-    public function getPage(): int
-    {
-        return $this->ebook->getViewNumber();
-    }
+    public function getPage(): int;
 }
- 
 ```
+#### Book.php
 ```php
 <?php
 
@@ -159,6 +111,60 @@ class Book implements BookInterface
     }
 }
 ```
+#### EbookInterface.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Structural\Adapter;
+
+interface EbookInterface
+{
+    public function unlock();
+
+    public function pressNext();
+
+    public function getViewNumber(): int;
+}
+ 
+```
+此时可以通过添加adapter `EbookAdapter`，让该class `EbookAdapter`实现接口`BookInterface`来满足服务的要求。 在adapter内部，对不兼容的接口`EbookInterface`进行解析和转换，将`EbookInterface`翻译转换成为可兼容的借口，最后达到可以被`BookService`所使用。
+
+#### BookAdapter.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Structural\Adapter;
+
+class EbookAdapter implements BookInterface
+{
+    private $ebook;
+
+    public function __construct(EbookInterface $ebook)
+    {
+        $this->ebook = $ebook;
+    }
+
+    public function open()
+    {
+        $this->ebook->unlock();
+    }
+
+    public function turnPage()
+    {
+        $this->ebook->pressNext();
+    }
+
+    public function getPage(): int
+    {
+        return $this->ebook->getViewNumber();
+    }
+}
+```
+#### Ebook.php
 
 ```php
  <?php
@@ -204,6 +210,7 @@ class Ebook implements EbookInterface
 }
  
 ```
+#### BookServiceTest.php
 ```php
  <?php
 

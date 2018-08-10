@@ -16,11 +16,11 @@ class BookService
     public function read(int $pageNumber): bool
     {
         $this->book->open();
-        while ($this->book->getPage() !== $pageNumber) {
-            echo 'read the page ' . $this->book->getPage() . "\n";
+        while ($this->book->getPage() < $pageNumber) {
             $this->book->turnPage();
         }
 
+        echo '... read the page ' . $this->book->getPage() . "\n";
         return true;
     }
 }
