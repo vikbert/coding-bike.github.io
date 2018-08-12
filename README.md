@@ -1,4 +1,5 @@
 # 🚴 🚴 🚴 PHP Cyclist  🚴 🚴 🚴 🚴 
+
 记录PHP Design Pattern的点滴。
 
 ## 创建模式
@@ -301,13 +302,12 @@ class PrinterTest extends TestCase
  
 ```
 
-
-
-### Simple Factory
-
 ### Factory Method
-
 ### Builder
+<p class="tip">
+    生成器模式（英：Builder Pattern）是一种设计模式，又名：建造模式，是一种对象构建模式。它可以将复杂对象的建造过程抽象出来（抽象类别），使这个抽象过程的不同实现方法可以构造出不同表现（属性）的对象。
+</p>
+
 
 ### Singleton
 <p class="tip">
