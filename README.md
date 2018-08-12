@@ -305,15 +305,247 @@ class PrinterTest extends TestCase
 ### Factory Method
 ### Builder
 <p class="tip">
-    生成器模式（英：Builder Pattern）是一种设计模式，又名：建造模式，是一种对象构建模式。它可以将复杂对象的建造过程抽象出来（抽象类别），使这个抽象过程的不同实现方法可以构造出不同表现（属性）的对象。
+    建造模式模式, 是一种对象构建模式。它将复杂对象的建造过程抽象为`BuilderInterface`的形式，使这个`BuilderInterface`的不同实现方法(具体的`Builder`类)可以构造出不同的对象。
 </p>
+<p class="warning">
+    - 当创建复杂对象的算法应该独立于该对象的组成部分以及它们的装配方式时；
+    - 当构造过程必须允许被构造的对象有不同的表示时。
+</p>
+
+参与者
+- `VehicleBuilder`为创建一个`Vehicle`对象的各个部件指定抽象接口。
+- `MotorbileBuilder`实现Builder的接口以构造和装配该`Motobike`的各个部件。定义并明确它所创建的表示。
+- `Director`构造一个使用`VehicleBuilder`接口的对象。
+- `Vehcile`是被构造的复杂对象的抽象父类。
+
+协作
+- 客户创建Director对象，并用它所想要的Builder对象进行配置。
+- Director配置创建复杂对象的流程。
+- 生成器处理导向器的请求，并将部件添加到该产品中。
+#### VehicleBuilder.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Builder;
+
+interface VehicleBuilder
+{
+    public function createVehicle();
+
+    public function addEngine();
+    public function addDoors();
+    public function addWheels();
+
+    public function getVehicle(): Vehicle;
+} 
+```
+
+#### Director.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Builder;
+
+final class Director
+{
+    public function build(VehicleBuilder $builder): Vehicle
+    {
+        $builder->createVehicle();
+        $builder->addDoors();
+        $builder->addEngine();
+        $builder->addWheels();
+
+        return $builder->getVehicle();
+    }
+} 
+```
+#### MotorbikeBuilder.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Builder;
+
+use DesignPatterns\Creational\Builder\Parts\Engine;
+use DesignPatterns\Creational\Builder\Parts\Wheel;
+
+final class MotorbikeBuilder implements VehicleBuilder
+{
+    /** @var Motorbike */
+    private $motorbike;
+
+    public function createVehicle()
+    {
+        $this->motorbike = new Motorbike();
+    }
+
+    public function addEngine()
+    {
+        $this->motorbike->setPart('engine', new Engine());
+    }
+
+    public function addDoors()
+    {
+    }
+
+    public function addWheels()
+    {
+        $this->motorbike->setPart('wheel-1', new Wheel());
+        $this->motorbike->setPart('wheel-2', new Wheel());
+    }
+
+    public function getVehicle(): Vehicle
+    {
+        return $this->motorbike;
+    }
+} 
+```
+#### CarBuilder.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Builder;
+
+use DesignPatterns\Creational\Builder\Parts\Door;
+use DesignPatterns\Creational\Builder\Parts\Engine;
+use DesignPatterns\Creational\Builder\Parts\Wheel;
+
+class CarBuilder implements VehicleBuilder
+{
+    /** @var Car */
+    private $car;
+
+    public function createVehicle()
+    {
+        $this->car = new Car();
+    }
+
+    public function addEngine()
+    {
+        $this->car->setPart('engine', new Engine());
+    }
+
+    public function addDoors()
+    {
+        $this->car->setPart('door-1', new Door());
+        $this->car->setPart('door-2', new Door());
+        $this->car->setPart('door-3', new Door());
+        $this->car->setPart('door-4', new Door());
+    }
+
+    public function addWheels()
+    {
+        $this->car->setPart('wheel-1', new Wheel());
+        $this->car->setPart('wheel-2', new Wheel());
+        $this->car->setPart('wheel-3', new Wheel());
+        $this->car->setPart('wheel-4', new Wheel());
+    }
+
+    public function getVehicle(): Vehicle
+    {
+        return $this->car;
+    }
+} 
+```
+#### Vehicle.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Builder;
+
+abstract class Vehicle
+{
+    /**
+     * @var object[]
+     */
+    protected $parts = [];
+
+    /**
+     * @param string $key
+     * @param object $part
+     */
+    public function setPart(string $key, $part)
+    {
+        $this->parts[$key] = $part;
+    }
+}
+
+final class Car extends Vehicle
+{
+}
+
+final class Motorbike extends Vehicle
+{
+}
+```
+
+#### Engine.php
+```php
+ 
+final class Door
+{
+}
+
+final class Wheel
+{
+}
+
+final class Engine
+{
+} 
+```
+#### DirectorTest.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Builder\Tests;
+
+use DesignPatterns\Creational\Builder\Car;
+use DesignPatterns\Creational\Builder\CarBuilder;
+use DesignPatterns\Creational\Builder\Director;
+use DesignPatterns\Creational\Builder\Motorbike;
+use DesignPatterns\Creational\Builder\MotorbikeBuilder;
+use PHPUnit\Framework\TestCase;
+
+class DirectorTest extends TestCase
+{
+    public function testBuildMotorbike()
+    {
+        $vehicle = (new Director())->build(new MotorbikeBuilder());
+
+        $this->assertInstanceOf(Motorbike::class, $vehicle);
+    }
+
+    public function testBuildCar()
+    {
+        $vehicle =(new Director())->build(new CarBuilder());
+
+        $this->assertInstanceOf(Car::class, $vehicle);
+    }
+}
+ 
+```
+
+
+
 
 
 ### Singleton
 <p class="tip">
     `Singleton` 设计模式，最常用的情况是： 举例1，前端网站在访问数据库时，有且只有唯一一个数据库链接。举例2， 当服务需要一个`Locker`对象来做某些切换的时候。我们可以使用`singleton`编写一个`Locker`对象，以这个唯一的对象作为切换的标准，进行解锁或上锁。
 </p>
-
+c
     Singleton 对象不可为父类: 定义类为private
     Singleton 对象不可复制: 定义__clone()为private
     Singleton 对象不可从外部构建: 定义__construct()为private
