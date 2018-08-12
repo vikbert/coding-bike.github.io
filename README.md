@@ -7,10 +7,189 @@
     `工厂`是创建产品（对象）的地方，其目的是将产品的创建与产品的使用分离。`抽象工厂模式`的目的，是将若干抽象产品的接口与不同主题产品的具体实现分离开。这样就能在增加新的具体工厂的时候，不用修改引用抽象工厂的客户端代码。抽象工厂模式提供了一种方式，可以将一组具有同一主题的构建以抽象工厂的形式封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象.    
 </p>
 
-举个例子来说，一个办公用具`印刷机`打印一套办公用品，例如，公司信纸，公司简历， 等等。这些办公组件，有不同的主题，例如，`classic, fancy, modern`. 我们需要一个抽象工厂类叫做`DocumentCreator`（文档创建器），此类提供创建若干种产品的接口，包括`createLetter()`（创建信件）和`createResume()`（创建简历）。其中，createLetter()返回一个`Letter`（信件），createResume()返回一个`Resume`（简历）。系统中还有一些DocumentCreator的具体实现类，包括`FancyDocumentCreator`和`ModernDocumentCreator`。这两个类对DocumentCreator的两个方法分别有不同的实现，用来创建不同的“信件”和“简历”（比如，用ModernDocumentCreator的实例可以创建`ModernLetter`和`ModernResume`）。这些具体的“信件”和“简历”类均继承自抽象类，即Letter和Resume类。客户端需要创建“信件”或“简历”时，先要得到一个合适的DocumentCreator实例，然后调用它的方法。一个工厂中创建的每个对象都是同一个主题的（“fancy”或者“modern”）。客户端程序只需要知道得到的对象是“信件”或者“简历”，而不需要知道具体的主题，因此客户端程序从抽象工厂DocumentCreator中得到了Letter或Resume类的引用，而不是具体类的对象引用。
+举个例子来说，一个办公用具`印刷机`打印一套办公用品，例如，公司信纸，公司简历， 等等。这些办公组件，有不同的主题，例如，`Classic, modern`. 我们需要一个抽象工厂类叫做`DocumentFactory`（文档创建器），此类提供创建若干种产品的接口，包括`createLetter()`（创建信件）和`createResume()`（创建简历）。其中，createLetter()返回一个`Letter`（信件），createResume()返回一个`Resume`（简历）。系统中还有一些DocumentFactory的具体实现类，包括`ClassicDocumentFactory`和`ModernDocumentFactory`。这两个类对DocumentFactory的两个方法分别有不同的实现，用来创建不同的“信件”和“简历”（比如，用ModernDocumentFactory的实例可以创建`ModernLetter`和`ModernResume`）。这些具体的“信件”和“简历”类均继承自抽象类，即Letter和Resume类。客户端需要创建“信件”或“简历”时，先要得到一个合适的DocumentFactory实例，然后调用它的方法。一个工厂中创建的每个对象都是同一个主题的（“Classic”或者“modern”。
 
     - 客户端代码不知道任何具体类型，也就没必要引入任何相关的头文件或类定义。
     - 如果要增加一个具体类型，只需要修改客户端代码使用另一个工厂即可，而且这个修改通常只是一个文件中的一行代码。
+
+<p class="tip">
+    在这个例子当中，客户端`Printer`对具体的对象的创建一无所知，它只需要按照需要从`ClassicDocumentFactory`或者`ModernDocumentFactory`当中选择一个`Factory`, 来打印所需的套件就够了。
+</p>
+
+#### DocumentFactory.php
+```php
+<?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\AbstractFactory\Factory;
+
+use DesignPatterns\Creational\AbstractFactory\Document;
+
+abstract class DocumentFactory
+{
+    abstract public function createLetterDocument(): Document;
+
+    abstract public function createResumeDocument(): Document;
+}
+```
+#### ClassicDocumentFactory.php
+```php
+<?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\AbstractFactory\Factory;
+
+use DesignPatterns\Creational\AbstractFactory\ClassicLetter;
+use DesignPatterns\Creational\AbstractFactory\ClassicResume;
+use DesignPatterns\Creational\AbstractFactory\Document;
+
+final class ClassicDocumentFactory extends DocumentFactory
+{
+    public function createLetterDocument(): Document
+    {
+        return new ClassicLetter('classic Letter');
+    }
+
+    public function createResumeDocument(): Document
+    {
+        return new ClassicResume('classic resume');
+    }
+}
+```
+#### ModernDocumentFactory.php
+```php
+<?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\AbstractFactory\Factory;
+
+use DesignPatterns\Creational\AbstractFactory\Document;
+use DesignPatterns\Creational\AbstractFactory\LetterDocument;
+use DesignPatterns\Creational\AbstractFactory\ModernLetter;
+use DesignPatterns\Creational\AbstractFactory\ModernResume;
+
+final class ModernDocumentFactory extends DocumentFactory
+{
+    public function createLetterDocument(): Document
+    {
+        return new ModernLetter('Modern Letter');
+    }
+
+    public function createResumeDocument(): Document
+    {
+        return new ModernResume('Modern Resume');
+    }
+}
+```
+#### Document.php
+```php
+<?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\AbstractFactory;
+
+abstract class Document
+{
+    protected $title;
+
+    public function __construct(string $title)
+    {
+        $this->title = $title;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+}
+
+class ClassicResume extends Document
+{
+}
+
+class ModernLetter extends Document
+{
+}
+
+class ModernLetter extends Document
+{
+}
+
+class ModernResume extends Document
+{
+}
+```
+
+#### Printer.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\AbstractFactory;
+
+use DesignPatterns\Creational\AbstractFactory\Factory\DocumentFactory;
+
+final class Printer
+{
+    private $factory;
+
+    public function __construct(DocumentFactory $factory)
+    {
+        $this->factory = $factory;
+    }
+
+    public function printLetter(): Document
+    {
+        return $this->factory->createLetterDocument();
+    }
+
+    public function printResume(): Document
+    {
+        return $this->factory->createResumeDocument();
+    }
+} 
+```
+
+#### PrinterTest.php
+```php
+<?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\AbstractFactory\Tests;
+
+use DesignPatterns\Creational\AbstractFactory\ClassicLetter;
+use DesignPatterns\Creational\AbstractFactory\ClassicResume;
+use DesignPatterns\Creational\AbstractFactory\Factory\ClassicDocumentFactory;
+use DesignPatterns\Creational\AbstractFactory\Factory\ModernDocumentFactory;
+use DesignPatterns\Creational\AbstractFactory\ModernLetter;
+use DesignPatterns\Creational\AbstractFactory\ModernResume;
+use DesignPatterns\Creational\AbstractFactory\Printer;
+use PHPUnit\Framework\TestCase;
+
+class PrinterTest extends TestCase
+{
+    public function testPrintDocument()
+    {
+        $printer = new Printer(new ClassicDocumentFactory());
+        $this->assertInstanceOf(ClassicLetter::class, $printer->printLetter());
+        $this->assertInstanceOf(ClassicResume::class, $printer->printResume());
+
+        $printer = new Printer(new ModernDocumentFactory());
+        $this->assertInstanceOf(ModernLetter::class, $printer->printLetter());
+        $this->assertInstanceOf(ModernResume::class, $printer->printResume());
+    }
+}
+```
+
+
+
+
 
 ### Static Factory
 
