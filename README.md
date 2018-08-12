@@ -322,6 +322,7 @@ class PrinterTest extends TestCase
 - 客户创建Director对象，并用它所想要的Builder对象进行配置。
 - Director配置创建复杂对象的流程。
 - 生成器处理导向器的请求，并将部件添加到该产品中。
+  
 #### VehicleBuilder.php
 ```php
  <?php
@@ -490,7 +491,7 @@ final class Motorbike extends Vehicle
 
 #### Engine.php
 ```php
- 
+ <?php
 final class Door
 {
 }
@@ -537,19 +538,15 @@ class DirectorTest extends TestCase
  
 ```
 
-
-
-
-
 ### Singleton
 <p class="tip">
     `Singleton` 设计模式，最常用的情况是： 举例1，前端网站在访问数据库时，有且只有唯一一个数据库链接。举例2， 当服务需要一个`Locker`对象来做某些切换的时候。我们可以使用`singleton`编写一个`Locker`对象，以这个唯一的对象作为切换的标准，进行解锁或上锁。
 </p>
-c
-    Singleton 对象不可为父类: 定义类为private
-    Singleton 对象不可复制: 定义__clone()为private
-    Singleton 对象不可从外部构建: 定义__construct()为private
-    Singleton 对象不可唤醒，或者说不可unserialized: 定义__wakeup()为private
+
+- Singleton 对象不可为父类: 定义类为private
+- Singleton 对象不可复制: 定义`__clone()`为private
+- Singleton 对象不可从外部构建: 定义`__construct()`为private
+- Singleton 对象不可唤醒，或者说不可unserialized: 定义`__wakeup()`为private
 
 #### Locker.php
 ```php
