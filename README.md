@@ -322,7 +322,18 @@ class PrinterTest extends TestCase
 - 客户创建Director对象，并用它所想要的Builder对象进行配置。
 - Director配置创建复杂对象的流程。
 - 生成器处理导向器的请求，并将部件添加到该产品中。
-  
+
+优点
+- 容许更改构建对象的内部细节
+- 将复杂的构建过程进行了封装
+- 可以控制复杂的构建过程
+
+
+缺点
+- 对于对象不同的表相，需要建立不同的`ConcreteBuilder`
+- `ConcreteBuilder`时多变的动态的
+- `Dependency injection`比较困难
+
 #### VehicleBuilder.php
 ```php
  <?php
