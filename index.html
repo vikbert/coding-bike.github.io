@@ -8,6 +8,10 @@
   <title>vikbert.github.io</title>
   <link rel="stylesheet" href="https://unpkg.com/docute@3/dist/docute.css">
   <style media="screen">
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
     .sidebar-heading[data-level="2"] {
       font-size: 16px;
       border-bottom: 2px solid #f5f0f0;
@@ -24,10 +28,6 @@
 <body>
   <div id="app"></div>
   <script src="https://unpkg.com/docute@3/dist/docute.js"></script>
-  <script src="https://unpkg.com/prismjs/components/prism-python.js"></script>
-  <script src="https://unpkg.com/prismjs/components/prism-php.js"></script>
-  <script src="https://unpkg.com/prismjs/components/prism-sql.js"></script>
-
   <script>
     docute.init({
       tocVisibleDepth: 3,
@@ -42,6 +42,10 @@
       'edit-link': 'https://github.com/vikbert/vikbert.github.io/edit/master/README.md'
     })
   </script>
+
+  <script src="https://unpkg.com/prismjs/components/prism-python.js"></script>
+  <script src="https://unpkg.com/prismjs/components/prism-php.js"></script>
+  <script src="https://unpkg.com/prismjs/components/prism-sql.js"></script>
 </body>
 
 </html>
