@@ -41,6 +41,20 @@
       // the link to source file of current page
       'edit-link': 'https://github.com/vikbert/vikbert.github.io/edit/master/README.md'
     })
+
+    var triggerCloseSidebarIfClickAnywhereElse = function () {
+      if (document.readyState === 'complete') {
+        var figure = document.getElementByTagName('figure');
+        if (figure.classList.contains('visible')) {
+          document.getElementsByTagName('section').addEventListener('click', function () {
+            figure.remove('visible');
+          });
+        }
+      };
+    }
+
+    triggerCloseSidebarIfClickAnywhereElse;
+
   </script>
 
   <script src="https://unpkg.com/prismjs/components/prism-python.js"></script>
