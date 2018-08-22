@@ -660,6 +660,121 @@ class LockerTest extends TestCase
     - 大量耗费资源的代表数字资源的对象，像字体或者位图
 - 不过，在特定情况下，简单的对象创建池(没有请求外部的资源，仅仅将自身保存在内存中)或许并不会提升效率和性能，这时候，就需要使用者酌情考虑了。
 
+#### StringReverseWorker.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Pool;
+
+class StringReverseWorker
+{
+    /** @var \DateTime */
+    private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    public function run(string $inputString): string
+    {
+        return strrev($inputString);
+    }
+} 
+```
+
+#### WorkerPool.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Pool;
+
+class WorkerPool implements \Countable
+{
+    private $freeWorkers = [];
+    private $occupiedWorkers = [];
+
+    public function count(): int
+    {
+        return count($this->freeWorkers) + count($this->occupiedWorkers);
+    }
+
+    public function getWorker(): StringReverseWorker
+    {
+        if (count($this->freeWorkers) === 0) {
+            $worker = new StringReverseWorker();
+        } else {
+            $worker = array_pop($this->freeWorkers);
+        }
+
+        $this->occupiedWorkers[spl_object_hash($worker)] = $worker;
+
+        return $worker;
+    }
+
+    public function dispose(StringReverseWorker $worker): void
+    {
+        $hashKey = spl_object_hash($worker);
+        if (array_key_exists($hashKey, $this->occupiedWorkers)) {
+            unset($this->occupiedWorkers[$hashKey]);
+            $this->freeWorkers[$hashKey] = $worker;
+        }
+    }
+} 
+```
+
+#### WorkerPoolTest.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\Pool\Tests;
+
+use DesignPatterns\Creational\Pool\StringReverseWorker;
+use DesignPatterns\Creational\Pool\WorkerPool;
+use PHPUnit\Framework\TestCase;
+
+class WorkerPoolTest extends TestCase
+{
+    /** @var WorkerPool */
+    private $pool;
+
+    public function setUp(): void
+    {
+        $this->pool = new WorkerPool();
+    }
+
+    public function testCountable(): void
+    {
+        $this->assertEquals(0, count($this->pool));
+
+        $this->pool->getWorker();
+        $this->pool->getWorker();
+        $this->assertEquals(2, count($this->pool));
+    }
+
+    public function testCanGetAnCorrectInstance()
+    {
+        $this->assertInstanceOf(StringReverseWorker::class, $this->pool->getWorker());
+    }
+
+    public function testCanGetTheSameInstanceIfDisposedPreviousInstance()
+    {
+        $workerFoo = $this->pool->getWorker();
+        $this->pool->dispose($workerFoo);
+
+        $workerBar = $this->pool->getWorker();
+
+        $this->assertSame($workerFoo, $workerBar);
+    }
+}
+ 
+```
 
 
 ### Prototype
