@@ -303,6 +303,10 @@ class PrinterTest extends TestCase
 ```
 
 ### Factory Method
+<p class="tip">
+    工厂方法, 这个模式是一个 “真正” 的设计模式，因为它遵循了（Dependency Inversion Principle） 众所周知这个 “D” 代表了真正的面向对象程序设计。它意味着工厂方法类依赖于类的抽象，而不是具体将被创建的类，这是工厂方法模式与简单工厂模式和静态工厂模式最重要的区别.
+</p>
+
 ### Builder
 <p class="tip">
     建造模式模式, 是一种对象构建模式。它将复杂对象的建造过程抽象为`BuilderInterface`的形式，使这个`BuilderInterface`的不同实现方法(具体的`Builder`类)可以构造出不同的对象。
@@ -644,8 +648,6 @@ class LockerTest extends TestCase
     }
 } 
 ```
-
-### Multition
 
 ### Pool
 <p class="tip">
@@ -1152,3 +1154,18 @@ class BookServiceTest extends TestCase
 ### Template Method
 
 ### Visitor
+
+### S.O.L.I.D
+#### D. Dependency Inversion Principle
+<p class="tip">
+  依赖反转原则, 该原则规定：1.高层次的模块不应该依赖于低层次的模块，两者都应该依赖于抽象接口。2.抽象接口不应该依赖于具体实现。而具体实现则应该依赖于抽象接口。    
+</p>
+问题由来：
+
+    UerService直接依赖类SessionStorage，假如要将类SessionStorage改为依赖类RedisStorage，则必须通过修改类UserService的代码来达成。这种场景下，类UserStorage一般是高层模块，负责复杂的业务逻辑；类SessionStorage和类RedisStorage是低层模块，负责基本的原子操作；假如修改类UserService，会给程序带来不必要的风险。
+
+解决方案：
+
+    将类UserService修改为依赖接口StorageInterface，类SessionStorage和类RedisStorage各自实现接口StorageInterface，类UserService通过接口StorageInterface间接与类SessionStorage或者类RedisStorage发生联系，则会大大降低修改类UserStorage的几率。
+
+
