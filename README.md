@@ -4,18 +4,18 @@
 
 - [🚴 PHP Cyclist 🚴](#%F0%9F%9A%B4-php-cyclist-%F0%9F%9A%B4)
     - [创建模式](#%E5%88%9B%E5%BB%BA%E6%A8%A1%E5%BC%8F)
-        - [Abstract Factory](#abstract-factory)
+        - [Abstract Factory Pattern](#abstract-factory-pattern)
             - [DocumentFactory.php](#documentfactoryphp)
             - [ClassicDocumentFactory.php](#classicdocumentfactoryphp)
             - [ModernDocumentFactory.php](#moderndocumentfactoryphp)
             - [Document.php](#documentphp)
             - [Printer.php](#printerphp)
             - [PrinterTest.php](#printertestphp)
-        - [Static Factory](#static-factory)
+        - [Static Factory Pattern](#static-factory-pattern)
             - [StaticDocumentFactory.php](#staticdocumentfactoryphp)
             - [Printer.php](#printerphp)
             - [PrinterTest.php](#printertestphp)
-        - [Factory Method](#factory-method)
+        - [Factory Method Pattern](#factory-method-pattern)
             - [LogFactory.php](#logfactoryphp)
             - [StreamLogFactory.php](#streamlogfactoryphp)
             - [FileLogFactory.php](#filelogfactoryphp)
@@ -23,7 +23,7 @@
             - [FileLog.php](#filelogphp)
             - [StreamLog.php](#streamlogphp)
             - [FactoryMethodTest.php](#factorymethodtestphp)
-        - [Builder](#builder)
+        - [Builder Pattern](#builder-pattern)
             - [VehicleBuilder.php](#vehiclebuilderphp)
             - [Director.php](#directorphp)
             - [MotorbikeBuilder.php](#motorbikebuilderphp)
@@ -31,20 +31,20 @@
             - [Vehicle.php](#vehiclephp)
             - [Engine.php](#enginephp)
             - [DirectorTest.php](#directortestphp)
-        - [Singleton](#singleton)
+        - [Singleton Pattern](#singleton-pattern)
             - [Locker.php](#lockerphp)
             - [LockerTest.php](#lockertestphp)
-        - [Pool](#pool)
+        - [Pool Pattern](#pool-pattern)
             - [StringReverseWorker.php](#stringreverseworkerphp)
             - [WorkerPool.php](#workerpoolphp)
             - [WorkerPoolTest.php](#workerpooltestphp)
-        - [Prototype](#prototype)
+        - [Prototype Pattern](#prototype-pattern)
             - [BookPrototype.php](#bookprototypephp)
             - [LanguageBookPrototype.php](#languagebookprototypephp)
             - [TravelBookPrototype.php](#travelbookprototypephp)
             - [PrototypeTest.php](#prototypetestphp)
     - [结构模式](#%E7%BB%93%E6%9E%84%E6%A8%A1%E5%BC%8F)
-        - [Adapter](#adapter)
+        - [Adapter Pattern](#adapter-pattern)
             - [BookService.php](#bookservicephp)
             - [BookInterface.php](#bookinterfacephp)
             - [Book.php](#bookphp)
@@ -52,34 +52,34 @@
             - [BookAdapter.php](#bookadapterphp)
             - [Ebook.php](#ebookphp)
             - [BookServiceTest.php](#bookservicetestphp)
-        - [Bridge](#bridge)
-        - [Composite](#composite)
-        - [Data Mapper](#data-mapper)
-        - [Decorator](#decorator)
-        - [Dependency Injection](#dependency-injection)
-        - [Facade](#facade)
-        - [Fluent Interface](#fluent-interface)
-        - [Flyweight](#flyweight)
-        - [Proxy](#proxy)
-        - [Registry](#registry)
+        - [Bridge Pattern](#bridge-pattern)
+        - [Composite Pattern](#composite-pattern)
+        - [Data Mapper Pattern](#data-mapper-pattern)
+        - [Decorator Pattern](#decorator-pattern)
+        - [Dependency Injection Pattern](#dependency-injection-pattern)
+        - [Facade Pattern](#facade-pattern)
+        - [Fluent Interface Pattern](#fluent-interface-pattern)
+        - [Flyweight Pattern](#flyweight-pattern)
+        - [Proxy Pattern](#proxy-pattern)
+        - [Registry Pattern](#registry-pattern)
     - [行为模式](#%E8%A1%8C%E4%B8%BA%E6%A8%A1%E5%BC%8F)
-        - [Chain of Responsibilities](#chain-of-responsibilities)
-        - [Command](#command)
-        - [Iterator](#iterator)
-        - [Mediator](#mediator)
-        - [Memento](#memento)
-        - [Null Object](#null-object)
-        - [Observer](#observer)
-        - [Specification](#specification)
-        - [State](#state)
-        - [Strategy](#strategy)
-        - [Template Method](#template-method)
-        - [Visitor](#visitor)
+        - [Chain of Responsibilities Pattern](#chain-of-responsibilities-pattern)
+        - [Command Pattern](#command-pattern)
+        - [Iterator Pattern](#iterator-pattern)
+        - [Mediator Pattern](#mediator-pattern)
+        - [Memento Pattern](#memento-pattern)
+        - [Null Object Pattern](#null-object-pattern)
+        - [Observer Pattern](#observer-pattern)
+        - [Specification Pattern](#specification-pattern)
+        - [State Pattern](#state-pattern)
+        - [Strategy Pattern](#strategy-pattern)
+        - [Template Method Pattern](#template-method-pattern)
+        - [Visitor Pattern](#visitor-pattern)
         - [S.O.L.I.D](#solid)
             - [D. Dependency Inversion Principle](#d-dependency-inversion-principle)
 
 ## 创建模式
-### Abstract Factory
+### Abstract Factory Pattern
 <p class="tip">
     `抽象工厂`是创建产品（对象）的地方，其目的是将产品的创建与产品的使用分离。`抽象工厂模式`的目的，是将若干抽象产品的接口与不同主题产品的具体实现分离开。这样就能在增加新的具体工厂的时候，不用修改引用抽象工厂的客户端代码。抽象工厂模式提供了一种方式，可以将一组具有同一主题的构建以抽象工厂的形式封装起来。在正常使用中，客户端程序需要创建抽象工厂的具体实现，然后使用抽象工厂作为接口来创建这一主题的具体对象.    
 </p>
@@ -265,7 +265,7 @@ class PrinterTest extends TestCase
 }
 ```
 
-### Static Factory
+### Static Factory Pattern
 <p class="tip">
     和`abstract factory`相比，`static factory`是使用一个`static function`来创建所指定的对象。它通常只有唯一一个
     创建方法，通常会被命名微`build`.
@@ -378,7 +378,7 @@ class PrinterTest extends TestCase
  
 ```
 
-### Factory Method
+### Factory Method Pattern
 <p class="tip">
     工厂方法, 这个模式是一个 “真正” 的设计模式，因为它遵循了（Dependency Inversion Principle） 众所周知这个 “D” 代表了真正的面向对象程序设计。它意味着工厂方法类依赖于类的抽象，而不是具体将被创建的类，这是工厂方法模式与简单工厂模式和静态工厂模式最重要的区别.
 </p>
@@ -524,7 +524,7 @@ class FactoryMethodTest extends TestCase
 
 
 
-### Builder
+### Builder Pattern
 <p class="tip">
     建造模式模式, 是一种对象构建模式。它将复杂对象的建造过程抽象为`BuilderInterface`的形式，使这个`BuilderInterface`的不同实现方法(具体的`Builder`类)可以构造出不同的对象。
 </p>
@@ -771,7 +771,7 @@ class DirectorTest extends TestCase
  
 ```
 
-### Singleton
+### Singleton Pattern
 <p class="tip">
     `Singleton` 设计模式，最常用的情况是： 举例1，前端网站在访问数据库时，有且只有唯一一个数据库链接。举例2， 当服务需要一个`Locker`对象来做某些切换的时候。我们可以使用`singleton`编写一个`Locker`对象，以这个唯一的对象作为切换的标准，进行解锁或上锁。
 </p>
@@ -867,7 +867,7 @@ class LockerTest extends TestCase
 } 
 ```
 
-### Pool
+### Pool Pattern
 <p class="tip">
     `对象池设计模式`是创建型设计模式，它会对新创建的对象应用一系列的初始化操作，让对象保持立即可使用的状态. 对象池的使用者会对对象池发起请求，以期望获取一个对象，并使用获取到的对象进行一系列操作，当使用者对对象的使用完成之后，使用者会将由对象池的对象创建工厂创建的对象返回给对象池，而不是用完之后销毁获取到的对象。
 </p>
@@ -997,7 +997,7 @@ class WorkerPoolTest extends TestCase
 ```
 
 
-### Prototype
+### Prototype Pattern
 <p class="tip">
     通过创建一个原型对象，然后复制原型对象来避免通过标准的方式创建大量的对象产生的开销(new Foo())。被复制的实例就是我们所称的“原型”，这个原型是可定制的. 比如通过ORM获取1,000,000行数据库记录然后创建每一条记录对应的对象实体。在实际项目中，原型模式很少单独出现，一般是和工厂方法模式一起出现， 即通过clone的方法创建一个对象，然后由工厂方法提供给调用者。
 </p>
@@ -1103,7 +1103,7 @@ class PrototypeTest extends TestCase
 
 ## 结构模式
 
-### Adapter
+### Adapter Pattern
 <p class="tip">
     Adapter 设计模式常用来解决接口不兼容的问题。 比方说，德国的电源插座是双孔圆形接口，当你使用中国三孔矩形接口的电器时，就无法接通电源。因为，接口不合标准。通常，解决的办法是，旅行随身携带一个电源转接头，即`adapter`. 然后将此转接头接到矩形三口插头上， 再将转接头连接到德国双孔圆形电源插座上。 通过转接头的转换，现在却可以对不符合标准的电器提供电源。在软件设计中，被称为`adapter`的对象，会实现标准接口，然后将非标准，有冲突的借口的对应方法进行相应的解析或者翻译，让其不标准的接口通过转换后满足调用者的接口需求。
 </p>
@@ -1328,50 +1328,50 @@ class BookServiceTest extends TestCase
 ```
 
 
-### Bridge
+### Bridge Pattern
 
-### Composite
+### Composite Pattern
 
-### Data Mapper
+### Data Mapper Pattern
 
-### Decorator
+### Decorator Pattern
 
-### Dependency Injection
+### Dependency Injection Pattern
 
-### Facade
+### Facade Pattern
 
-### Fluent Interface
+### Fluent Interface Pattern
 
-### Flyweight
+### Flyweight Pattern
 
-### Proxy
+### Proxy Pattern
 
-### Registry
+### Registry Pattern
 
 ## 行为模式
-### Chain of Responsibilities
+### Chain of Responsibilities Pattern
 
-### Command
+### Command Pattern
 
-### Iterator
+### Iterator Pattern
 
-### Mediator
+### Mediator Pattern
 
-### Memento
+### Memento Pattern
 
-### Null Object
+### Null Object Pattern
 
-### Observer
+### Observer Pattern
 
-### Specification
+### Specification Pattern
 
-### State
+### State Pattern
 
-### Strategy
+### Strategy Pattern
 
-### Template Method
+### Template Method Pattern
 
-### Visitor
+### Visitor Pattern
 
 ### S.O.L.I.D
 #### D. Dependency Inversion Principle
