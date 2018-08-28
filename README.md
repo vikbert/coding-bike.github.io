@@ -307,6 +307,147 @@ class PrinterTest extends TestCase
     工厂方法, 这个模式是一个 “真正” 的设计模式，因为它遵循了（Dependency Inversion Principle） 众所周知这个 “D” 代表了真正的面向对象程序设计。它意味着工厂方法类依赖于类的抽象，而不是具体将被创建的类，这是工厂方法模式与简单工厂模式和静态工厂模式最重要的区别.
 </p>
 
+在下面的例子当中，工厂方法使这种结构可以在不修改具体工厂类的情况下引进新的`Log`. 如果出现新的`Log`类型，只需要为这种新`Log`创建一个具体的工厂类就可以获得`Log`的实例，这一特点无疑使得工厂方法模式具有超越简单工厂模式的优越性，更加符合“开闭原则”:
+
+    1）对于扩展是开放的（Open for extension）。当应用的需求改变时，我们可以对模块进行扩展，使其具有满足那些改变的新行为.
+    2）对于修改是关闭的（Closed for modification）。对模块行为进行扩展时，不必改动模块的源代码或者二进制代码.
+
+
+#### LogFactory.php
+```php
+<?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\FactoryMethod;
+
+abstract class LogFactory
+{
+    abstract public function createLog(): Log;
+}
+```
+#### StreamLogFactory.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\FactoryMethod;
+
+class StreamLogFactory extends LogFactory
+{
+    public function createLog(): Log
+    {
+        return new StreamLog();
+    }
+} 
+```
+
+#### FileLogFactory.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\FactoryMethod;
+
+class FileLogFactory extends LogFactory
+{
+    public function createLog(): Log
+    {
+        return new FileLog();
+    }
+} 
+```
+
+#### Log.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\FactoryMethod;
+
+abstract class Log
+{
+    abstract public function writeLog(): void;
+} 
+```
+#### FileLog.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\FactoryMethod;
+
+class FileLog extends Log
+{
+    public function __construct()
+    {
+    }
+
+    public function writeLog(): void
+    {
+        echo 'file logs';
+    }
+} 
+```
+
+#### StreamLog.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\FactoryMethod;
+
+class StreamLog extends Log
+{
+    public function writeLog(): void
+    {
+        echo 'stream logs';
+    }
+} 
+```
+#### FactoryMethodTest.php
+```php
+ <?php
+
+declare(strict_types = 1);
+
+namespace DesignPatterns\Creational\FactoryMethod\Tests;
+
+use DesignPatterns\Creational\FactoryMethod\FileLogFactory;
+use DesignPatterns\Creational\FactoryMethod\StreamLogFactory;
+use PHPUnit\Framework\TestCase;
+
+class FactoryMethodTest extends TestCase
+{
+    public function testWriteFileLogs()
+    {
+        $fileLogFactory = new FileLogFactory();
+        $fileLog = $fileLogFactory->createLog();
+        $fileLog->writeLog();
+
+        $this->expectOutputString('file logs');
+    }
+
+    public function testWriteStreamLogs()
+    {
+        $streamLogFactory = new StreamLogFactory();
+        $streamLog = $streamLogFactory->createLog();
+        $streamLog->writeLog();
+
+        $this->expectOutputString('stream logs');
+    }
+} 
+```
+
+
+
+
+
 ### Builder
 <p class="tip">
     建造模式模式, 是一种对象构建模式。它将复杂对象的建造过程抽象为`BuilderInterface`的形式，使这个`BuilderInterface`的不同实现方法(具体的`Builder`类)可以构造出不同的对象。
@@ -339,6 +480,7 @@ class PrinterTest extends TestCase
 - `Dependency injection`比较困难
 
 #### VehicleBuilder.php
+
 ```php
  <?php
 
