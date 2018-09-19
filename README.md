@@ -1,6 +1,6 @@
 #  🚴  PHP Cyclist  🚴 
 
-记录PHP Design Pattern的点滴。
+Programming with PHP like a cyclist who rides a bicycle.
 
 
 ## PHP Design Pattern
