@@ -21,10 +21,6 @@
 - Be sure PR passes all builds, i.e. all tests, all checks
 - spash the non-informative commits `git rebase -i origin/develop` by updating `pick` to `squash`
 - the code should NOT contain commented-out code.
-  
-
-
-
 
 
 ## Code Review
@@ -55,7 +51,6 @@
 ### Tests & Assertions
 - prefer to use `$this->assertSame()`
 - perfer to use concret string or constant for assertion. $this->assertSame('iteration_edited', $formData[$key]);
-- 
 
 ### Function
 - Do NOT `presist` the function parameter to database, because the input variable might be modified from outside the function. It causes inconsistence.
@@ -76,4 +71,3 @@
 
 #### Articles
 - [Code Review Best Practice](https://medium.com/palantir/code-review-best-practices-19e02780015f)
-- 
