@@ -1,7 +1,7 @@
 # Coding
 
 
-## Implementation
+## HowTo Code
 - think about if you have solved the problem
 - write good commits
     - Capitalized, short message (80 char or less)
@@ -12,7 +12,7 @@
     - `Example`: Add jcsv dependency to fix IntelliJ compilation
 
 
-## Prepare for PR
+## HowTo PR
 - do self-reviewed commits(by `diff`)
     - Every change should have a specific reason.
     - Function and classes should exist for a reason.
@@ -23,7 +23,7 @@
 - the code should NOT contain commented-out code.
 
 
-## Code Review
+## HowTo CodeReview
 
 <p class="tip">
     Code Review will be helpful, if the following agreements are clarified in the team.
@@ -34,13 +34,13 @@
 - code review are classless:
 
 
-### Visiblity Levels
+### Check Visiblity Levels
 - should `constants` be public?
 - should `variables`be public?
 - should `function` be public?
 - should `contruct` be public?
 
-### PHPDoc
+### Check PHPDoc
 - use `PHPDoc` block, only if really necessary
 - declare returned array in `PHPDoc`
     - @return String[]
@@ -48,11 +48,11 @@
     - @return Customer[]
     - @return int[]
 
-### Tests & Assertions
+### Check Tests & Assertions
 - prefer to use `$this->assertSame()`
 - perfer to use concret string or constant for assertion. $this->assertSame('iteration_edited', $formData[$key]);
 
-### Function
+### Check Function
 - Do NOT `presist` the function parameter to database, because the input variable might be modified from outside the function. It causes inconsistence.
 - define always the return value in PHP7 function
     -  `self` for short form within the same Class
@@ -61,7 +61,7 @@
     -  `string`
     -  `bool`
 
-### Something Else
+### Check Something Else
 - in_array($value, $stack, `true`) explicit to check the type
 - `constants` with scale value, only if the value is reused in code.
 - Do NOT use alias, if not necessary in SQL query
