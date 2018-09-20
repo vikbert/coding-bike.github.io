@@ -1,25 +1,11 @@
-
-
 [<img src="https://user-images.githubusercontent.com/1295961/41170455-b47a54bc-6b4c-11e8-940f-bc0a3bc3ff8d.png" align="center" width="800">](http://flutter.io)
 
-<p align="center">
-  <a href="https://stackoverflow.com/questions/tagged/flutter?sort=votes">
-    <img alt="StackOverflow" src="https://img.shields.io/badge/StackOverflow-4752-orange.svg" />
-  </a>
-  <a href="https://github.com/search?q=flutter+language%3Adart&type=Repositories">
-    <img alt="Github Repositories" src="https://img.shields.io/badge/Repos-7221-brightgreen.svg" />
-  </a>
-  <img alt="Entries" src="https://img.shields.io/badge/Items-190-lightgrey.svg" />
-  <a href="https://github.com/sindresorhus/awesome">
-    <img alt="Awesome" src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" />
-  </a>
+I met the FLutter SDK in Aug. 2018. I fall in love with Flutter, as I tried the official tutorial in 30 minutes. It was pretty simple to develop a native-like cross-platform 
+mobile application. In the past, I collected some useful articles which I found from Internet.
+
+<p class="tip">
+Flutter is a mobile app SDK for building high-performance, high-fidelity, apps for iOS and Android, from a single codebase.  
 </p>
-
-Flutter is a mobile app SDK for building high-performance, high-fidelity, apps for iOS and Android, from a single codebase.
-
-If you appreciate the content 📖<br>
-Support project visibility, give a ⭐<br>
-Also 👍| ⭐| 👏 links to support their authors !
 
 
 ## Contents
