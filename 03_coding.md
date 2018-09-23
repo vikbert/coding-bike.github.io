@@ -1,14 +1,22 @@
 # Coding
+[<img src="images/Coding.svg" align="center" width="500" height="60">](https://vikbert.github.io/#/03_coding)
+
+How to write awecome code? First step is deciding to become a awesome programmer.
+Since you already did that, the main step would be to keep yourself motivated to 
+become an awesome programmer that you have always wanted to be.
+
+There are some factors, I take always into consideration:
 
 
 ## HowTo Code
-- think about if you have solved the problem
-- write good commits
-    - Capitalized, short message (80 char or less)
-    - commit message in the imperative
+- think about always if I have solved the problem exactly
+- prefer to write good commits
+    - the comment is capitalized, in short message (80 char or less)
+    - the comment begins always with ticket number, if existing
+    - the commit message is written in the imperative
         - `good` Fix bugs
         - `bad` Fixed bug or Fixes bug
-    - further pragraphs come after blank lines
+    - the further pragraphs come after blank lines
     - `Example`: Add jcsv dependency to fix IntelliJ compilation
 
 
