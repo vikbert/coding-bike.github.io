@@ -21,20 +21,24 @@ There are some factors, I take always into consideration:
 
 
 ## HowTo PR
-### Do self-reviewed commits
+### self-reviewed commits
     - you should always use the `diff` view in IDE, or github or bitbucket to review the diff in your commits.
-### you have the extact `Reason`
+### extact `Reason`
     - Reason to change this line of code
     - Reason to add a new public function
     - Reason to add a new Class
     - Reason to add new variables, konstants
 ### Do self-tested PR
     - Be sure PR passes all builds, i.e. all tests, all checks
-### Spash the non-informative commits
+### Spash commits
+Spash the non-informative commits
     -  `git rebase -i origin/develop` by updating `pick` to `squash`
-### the code should NOT contain commented-out code.
-    - the code commented-out is non-useful code
-    - you can commit twice, if you want to have the code snippets in the history, so that you are able to get them back in next time.
+### Clean up code
+    - the code should NOT contain commented-out code.
+        - the code commented-out is non-useful code
+        - you can commit twice, if you want to have the code snippets in the history, so that you are able to get them back in next time.
+    - the code is formatted with Formatter, such as `php-cs-fixer`
+    - the code is checked by ananlyse tool, such as  `phpstan`
 ### Push the PR now, if you are satisfied with it.
     - Local branch belongs to you, you can do everything in the local branch
     - PR belongs to the team, make it clean and informative.
@@ -46,9 +50,9 @@ There are some factors, I take always into consideration:
     Code Review will be helpful, if the following agreements are clarified in the team.
 </p>
 
-`Agreements of coding review`
+### `Agreements of coding review`
 
-- code review are classless:
+- code review are classless. Each code snippets need to be reviewed, and it doesn't matter, if the code is written by senior or junior.
 
 
 ### Check Visiblity Levels
