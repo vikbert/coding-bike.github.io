@@ -21,14 +21,23 @@ There are some factors, I take always into consideration:
 
 
 ## HowTo PR
-- do self-reviewed commits(by `diff`)
-    - Every change should have a specific reason.
-    - Function and classes should exist for a reason.
-    - 
-- Only submit complete, self-reviewed(by `diff`), and self-tested PR.
-- Be sure PR passes all builds, i.e. all tests, all checks
-- spash the non-informative commits `git rebase -i origin/develop` by updating `pick` to `squash`
-- the code should NOT contain commented-out code.
+### Do self-reviewed commits
+    - you should always use the `diff` view in IDE, or github or bitbucket to review the diff in your commits.
+### you have the extact `Reason`
+    - Reason to change this line of code
+    - Reason to add a new public function
+    - Reason to add a new Class
+    - Reason to add new variables, konstants
+### Do self-tested PR
+    - Be sure PR passes all builds, i.e. all tests, all checks
+### Spash the non-informative commits
+    -  `git rebase -i origin/develop` by updating `pick` to `squash`
+### the code should NOT contain commented-out code.
+    - the code commented-out is non-useful code
+    - you can commit twice, if you want to have the code snippets in the history, so that you are able to get them back in next time.
+### Push the PR now, if you are satisfied with it.
+    - Local branch belongs to you, you can do everything in the local branch
+    - PR belongs to the team, make it clean and informative.
 
 
 ## HowTo CodeReview
