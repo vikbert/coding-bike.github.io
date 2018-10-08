@@ -1,5 +1,10 @@
+---
+title: Be a Clean Coder
+pagetitle: xzhou
+---
+
+
 # Coding
-[<img src="images/Coding.svg" align="center" width="500" height="60">](https://vikbert.github.io/#/03_coding)
 
 How to write awecome code? First step is deciding to become a awesome programmer.
 Since you already did that, the main step would be to keep yourself motivated to 
@@ -56,10 +61,11 @@ Spash the non-informative commits
 
 
 ### Check Visiblity Levels
-- should `constants` be public?
-- should `variables`be public?
-- should `function` be public?
-- should `contruct` be public?
+check the visibility of the following stuffs:
+- `constants` 
+- `variables`
+- `function` 
+- `contructor` 
 
 ### Check PHPDoc
 - use `PHPDoc` block, only if really necessary

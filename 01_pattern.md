@@ -1,5 +1,11 @@
-# PHP Design Pattern 
+---
+title: PHP Design Pattern
+pagetitle: Design Pattern in PHP
+Author: xzhou
+---
 
+
+# PHP Design Pattern 
 
 ## 创建模式
 ### Abstract Factory Pattern
