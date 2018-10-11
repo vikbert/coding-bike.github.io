@@ -65,7 +65,26 @@ check the visibility of the following stuffs:
 - `constants` 
 - `variables`
 - `function` 
-- `contructor` 
+- `contructor`
+
+### Optimize the DB queries
+- cache the data if possible, to limit the queries to database
+
+### Refactoring
+- create a new private method, only if
+    - code block too complex to understand
+    - code block need to be reusedch
+
+### Check the Public API
+- add new public API
+    - we need the public API really
+    - this API is tested
+- update the existing public API
+    - check where the API was used
+    - check if the tests are still green
+- remove the existing public API
+    - NO usage of this public API
+
 
 ### Check PHPDoc
 - use `PHPDoc` block, only if really necessary
