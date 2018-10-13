@@ -1,69 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-  <title>vikbert.github.io</title>
-  <link rel="stylesheet" href="https://unpkg.com/docute@3/dist/docute.css">
-  <style media="screen">
-    ::-webkit-scrollbar {
-      display: none;
+  <meta charset="UTF-8">
+  <title>hire-me</title>
+  <meta name="keywords" content="docsify, documentation, boilerplate, starter kit">
+  <meta name="description" content="A path to getting an awesome tech gig.">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="_images/favicons/favicon.ico" />
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32" href="_images/favicons/favicon.ico">
+  <link rel="icon" sizes="192x192" href="_images/favicons/favicon-192.png">
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="_images/favicons/favicon-180.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+  <meta name="msapplication-TileImage" content="_images/favicons/favicon-144.png">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" title="vue">
+  <!-- Open Graph -->
+  <meta property="og:url" content="https://fvcproductions.github.io/hire-me/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="hire-me">
+  <meta property="og:image" content="https://i.imgur.com/e3cjDTB.png">
+  <meta property="og:description" content="A path to getting an awesome tech gig.">
+  <meta property="og:site_name" content="hire-me">
+  <meta property="og:locale" content="en_US">
+  <meta property="article:author" content="Frances Coronel">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@fvcproductions">
+  <meta name="twitter:creator" content="@fvcproductions">
+  <meta name="twitter:url" content="https://fvcproductions.github.io/hire-me/">
+  <meta name="twitter:title" content="hire-me">
+  <meta name="twitter:description" content="A path to getting an awesome tech gig.">
+  <meta name="twitter:image" content=" https://i.imgur.com/e3cjDTB.png">
+  <!-- Google+ -->
+  <link rel="author" href="Frances Coronel">
+  <link rel="publisher" href="FVCproductions">
+  <meta itemprop="name" content="hire-me">
+  <meta itemprop="description" content="A path to getting an awesome tech gig.">
+  <meta itemprop="image" content="https://i.imgur.com/e3cjDTB.png">
+  <style>
+    body {
+      font-size: 1rem;
     }
 
-    .sidebar-heading[data-level="2"] {
-      font-size: 16px;
-      border-bottom: 2px solid #f5f0f0;
+    nav.app-nav li ul {
+      min-width: 100px;
     }
 
-    .markdown-body code {
-      border: 1px dotted #d4d2d2;
-      margin: 0 3px;
-      background-color: #f5f5f5;
-      padding-top: 2px;
+    .sidebar ul li a {
+      white-space: pre-line;
+      padding-right: .5em;
+    }
+
+    .markdown-section code {
+      font-size: inherit;
+    }
+
+    .markdown-section pre>code {
+      white-space: pre-wrap;
+    }
+
+    pre:after {
+      padding: 1em;
+      right: .5em;
+    }
+
+    .markdown-section ol,
+    .markdown-section ul {
+      margin: 0;
     }
   </style>
 </head>
 
 <body>
-  <div id="app"></div>
-  <script src="https://unpkg.com/docute@3/dist/docute.js"></script>
-  <script>
-    docute.init({
-      tocVisibleDepth: 3,
-      nav: [
-        { title: 'Home', path: '/' },
-        { title: 'DesignPattern', path: '01_pattern' },
-        { title: 'Mobile', path: '02_flutter' },
-        { title: 'Coding', path: '03_coding' },
-      ],
-      // slug for your github repo
-      repo: 'vikbert',
-      // twitter username
-      twitter: 'segentor',
-      // the link to source file of current page
-      'edit-link': 'https://github.com/vikbert/vikbert.github.io/edit/master/README.md'
-    })
-
-    var triggerCloseSidebarIfClickAnywhereElse = function () {
-      if (document.readyState === 'complete') {
-        var figure = document.getElementByTagName('figure');
-        if (figure.classList.contains('visible')) {
-          document.getElementsByTagName('section').addEventListener('click', function () {
-            figure.remove('visible');
-          });
-        }
-      };
-    }
-
-    triggerCloseSidebarIfClickAnywhereElse;
-
-  </script>
-
-  <script src="https://unpkg.com/prismjs/components/prism-python.js"></script>
-  <script src="https://unpkg.com/prismjs/components/prism-php.js"></script>
-  <script src="https://unpkg.com/prismjs/components/prism-sql.js"></script>
+  <div id="app">One sec... 😅</div>
 </body>
+<script>
+  window.$docsify = {
+    auto2top: true,
+    coverpage: true,
+    executeScript: true,
+    loadSidebar: true,
+    name: 'hire-me',
+    homepage: 'https://raw.githubusercontent.com/fvcproductions/hire-me/master/README.md',
+    search: {
+      paths: 'auto',
+      placeholder: 'Type to search 🔍',
+      noData: 'No Results! 😞',
+    }
+  };
+</script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/zoom-image.min.js"></script>
 
 </html>
