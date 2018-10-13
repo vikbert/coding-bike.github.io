@@ -1,7 +1,6 @@
 #  🚴  PHP Cyclist  🚴 
 
-Programming with PHP like a cyclist who rides a bicycle.
-
+Programming with PHP like a cyclist
 
 ## PHP Design Pattern
 [<img src="images/DesignPattern.svg" align="center" width="500" height="60">](https://vikbert.github.io/#/01_pattern)
