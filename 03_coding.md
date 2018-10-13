@@ -1,9 +1,3 @@
----
-title: Be a Clean Coder
-pagetitle: xzhou
----
-
-
 # Coding
 
 How to write awecome code? First step is deciding to become a awesome programmer.
