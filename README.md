@@ -2,7 +2,7 @@
 
 <img src="_images/home.png" width="800">
 
-> I am not good at writing, and all the notes are published with joy after the daily work. I was not going to write a good guide for all in `english`, but just to `re-orgnized the thinking and experiences` for the work. That was the reason, why I wrote sometimes in English, but sometimes in `Chinese`.
+> These articles are just to `re-orgnized the thinking and experiences` of mine for the daily work.
 
 
 想成为一个好的自行车运动员，每天需要做的就是骑车训练。要想在这个领域出类拔萃，就是进行日复一日的刻苦训练，在自行车运动当中是如此，
@@ -24,6 +24,7 @@
 - **PHP Framework**
     - Symfony
     - twig
+    - Doctrine Bundle
 - **PHP Virtualization**
     - Docker
     - Vagrant

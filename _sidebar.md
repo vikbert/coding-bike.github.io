@@ -14,6 +14,7 @@
 
   * [Symfony](/php-framework/symfony)
   * [Twig](/php-framework/twig)
+  * [Doctrine & MysQL](/php-framework/doctrine)
 
 * PHP Virtualization
 
@@ -36,6 +37,7 @@
 
 * PHP CI/CD
 
+  * [12Factors](/php-ci-cd/12-factors)
   * [Jenkins](/php-ci-cd/jenkins)
   * [Ansible](/php-ci-cd/ansible)
   * [GitLab](/php-ci-cd/gitlab)
@@ -43,7 +45,6 @@
 * Agile
 
   * [Scrum](/agile/scrum)
-  * [Kanban](/agile/kanban)
 
 * Mobile
 
