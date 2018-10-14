@@ -5,6 +5,6 @@
 > A path to being an awesome PHP Developer
 
 [GitHub](https://github.com/vikbert)
-[Get Started](#coding-bike)
+[Get Started](#main)
 
 ![color](#F0FEFF)
