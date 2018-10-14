@@ -1,9 +1,3 @@
----
-title: Twig & Symfony
----
-
-# Twig
-
 ## Twig Extension
 unset the array in twig
 ```php

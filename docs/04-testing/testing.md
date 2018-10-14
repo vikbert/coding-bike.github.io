@@ -1,12 +1,3 @@
----
-title: Testing Notes
-author: Vikbert
-pandoc-latex-fontsize:
-  - classes: [c, listing]
-    size: footnotesize
-...
-
-# Testing
 TODO:
 - 听听名人是如何说明测试重要性的
 
