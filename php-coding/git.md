@@ -26,3 +26,11 @@ Step 2:
 git config --global core.excludesfile '~/.gitignore'
 
 ```
+
+> the other command to update the global setting
+
+```
+git config --global user.name 'your_name'
+git config --global user.email 'your_email'
+
+```
