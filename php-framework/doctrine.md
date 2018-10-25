@@ -15,7 +15,7 @@ You can use the TEMPORARY keyword when creating a table. A TEMPORARY table is vi
 CREATE temporary TABLE IF NOT EXISTS female_customers AS 
  (  SELECT c.id 
     FROM customer AS c
-    AND c.gender = 'F'
+    AND c.gender === 'F'
  ) 
 ```
 
